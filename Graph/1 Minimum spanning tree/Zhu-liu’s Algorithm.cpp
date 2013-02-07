@@ -1,6 +1,6 @@
 struct node
 {
-    int u£»
+    int u;
     int v;
     double w;
 }edge[maxn * maxn];
