@@ -1,10 +1,12 @@
 
 //最小树形图朱-刘算法
-/******************************************
+
+/****************************************
 每个点选取最小的入边，如果出现环则收缩环，
 将边权改为替换环上最大边的差额，否则结束。
 注意去掉自环。时间复杂度是O(V E)。
-*******************************************/
+****************************************/
+
 struct node
 {
     int u;
@@ -14,6 +16,7 @@ struct node
 int pre[maxn], id[maxn], vis[maxn];
 int n, m;
 double in[maxn];
+
 double dirmst(int root, int V, int E)
 {
     double ret = 0;
@@ -21,7 +24,7 @@ double dirmst(int root, int V, int E)
         for(int i = 0; i < V; i++){
             in[i] = oo;
         }
-//找最小入边
+        //找最小入边
         for(int i = 0; i < E; i++){
             int u = edge[i].u;
             int v = edge[i].v;
@@ -32,21 +35,21 @@ double dirmst(int root, int V, int E)
         }
         for(int i = 0; i < V; i++){
             if(i == root) continue;
-////除了根以外有点没有入边,则根无法到达它
+            //除了根以外有点没有入边,则根无法到达它
             if(in[i] == oo) return -1;
         }
         int cnt = 0;
         memset(id, -1, sizeof(id));
         memset(vis, -1, sizeof(vis));
         in[root] = 0;
-//找环
+        //找环
         for(int i = 0; i < V; i++)
         {
-//标记每个环
+            //标记每个环
             ret += in[i];
             int v = i;
             while(vis[v] != i && id[v] == -1 && v != root){
-//每个点寻找其前序点，要么最终寻找至根部，要么找到一个环
+            //每个点寻找其前序点，要么最终寻找至根部，要么找到一个环
                 vis[v] = i;
                 v = pre[v];
             }
@@ -61,7 +64,7 @@ double dirmst(int root, int V, int E)
         for(int i = 0; i < V; i++){
             if(id[i] == -1) id[i] = cnt++;
         }
-//建立新图
+        //建立新图
         for(int i = 0; i < E; i++){
             int u = edge[i].u;
             int v = edge[i].v;
