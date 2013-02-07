@@ -7,8 +7,7 @@
 注意去掉自环。时间复杂度是O(V E)。
 ****************************************/
 
-struct node
-{
+struct node{
     int u;
     int v;
     double w;
@@ -17,8 +16,7 @@ int pre[maxn], id[maxn], vis[maxn];
 int n, m;
 double in[maxn];
 
-double dirmst(int root, int V, int E)
-{
+double dirmst(int root, int V, int E){
     double ret = 0;
     while(true){
         for(int i = 0; i < V; i++){
@@ -43,8 +41,7 @@ double dirmst(int root, int V, int E)
         memset(vis, -1, sizeof(vis));
         in[root] = 0;
         //找环
-        for(int i = 0; i < V; i++)
-        {
+        for(int i = 0; i < V; i++){
             //标记每个环
             ret += in[i];
             int v = i;
@@ -53,7 +50,8 @@ double dirmst(int root, int V, int E)
                 vis[v] = i;
                 v = pre[v];
             }
-            if(v != root && id[v] == -1){//缩点
+            if(v != root && id[v] == -1){
+                //缩点
                 for(int u = pre[v]; u != v; u = pre[u]){
                     id[u] = cnt;
                 }
