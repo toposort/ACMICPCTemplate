@@ -1,8 +1,8 @@
 struct Arclist{
     int cnt, head[maxn], dis[maxn];
     int cur[maxn], pre[maxn], gap[maxn], aug[maxn];
-	struct node{int u, v, w, next;}edge[maxm];
-	void init(int n){cnt = 0; std::fill_n(head, n+1, -1);}
+    struct node{int u, v, w, next;}edge[maxm];
+    void init(int n){cnt = 0; std::fill_n(head, n+1, -1);}
     void add(int u, int v, int w){
         edge[cnt].u = u;edge[cnt].v = v;
         edge[cnt].w = w;edge[cnt].next = head[u];
